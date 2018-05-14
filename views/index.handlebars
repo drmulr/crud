@@ -1,0 +1,85 @@
+<div>
+    <h2>DM Todo</h2>
+</div>
+
+<div>
+    <ul>
+        {{#each things}}
+            <li>
+                <p>
+                    {{this.id}}. {{this.thing}}
+                    <button data-thingid="{{this.id}}" class="delete-button">Delete</button>
+                </p>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+
+<div>
+    <h2>Create Todo</h2>
+    <form id="create-thing">
+        <textarea type="text" name="create" cols="30" rows="1"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div>
+    <h2>Edit Thing</h2>
+    <form id="edit-thing">
+        <select name="id">
+            {{#each things}}
+                    <option value="{{this.id}}">{{this.id}}</option>
+            {{/each}}
+        </select>
+        <textarea name="edit-thing-field" cols="30" rows="1"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+
+    $("#create-thing").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        var newThing = {
+            thing: $("#create-thing [name=create]").val().trim()};
+        // Send the POST request.
+        $.ajax("/new", {
+            type: "POST",
+            data: newThing
+        }).then(
+            function () {
+                console.log("created new thing!");
+                // Reload the page to get the updated list
+                location.reload();
+            });
+    });
+
+    $("#edit-thing").on("submit", function (event) {
+        event.preventDefault();
+        var id = $("[name=id]").val().trim();
+        var updatedThing = {
+            thing: $("#edit-thing [name=edit-thing-field]").val().trim()};
+        $.ajax("/things/" + id, {
+            type: "PUT",
+            data: updatedThing
+        }).then(
+            function () {
+                console.log("created new thing!");
+                // Reload the page to get the updated list
+                location.reload();
+            });
+    });
+
+    $(".delete-button").on("click", function (event) {
+        var id = $(this).data("thingid");
+
+        $.ajax("/things/" + id, {
+            type: "DELETE"
+        }).then( function() {
+                console.log("Deleted ID: " + id);
+                location.reload();
+        });
+    });
+    
+</script>
