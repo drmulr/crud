@@ -1,8 +1,9 @@
 <div>
-    <h2>DM Todo</h2>
+    <h2>DM Todo Portal</h2>
 </div>
 
 <div>
+    <h2>All Todo's</h2>
     <ul>
         {{#each things}}
             <li>
@@ -16,7 +17,7 @@
 </div>
 
 <div>
-    <h2>Create Todo</h2>
+    <h2>Create New Todo</h2>
     <form id="create-thing">
         <textarea type="text" name="create" cols="30" rows="1"></textarea>
         <button type="submit">Submit</button>
@@ -24,7 +25,7 @@
 </div>
 
 <div>
-    <h2>Edit Thing</h2>
+    <h2>Edit a Todo</h2>
     <form id="edit-thing">
         <select name="id">
             {{#each things}}
