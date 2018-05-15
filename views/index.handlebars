@@ -1,38 +1,47 @@
-<div>
-    <h2>DM Todo Portal</h2>
-</div>
+<div class="container">
 
-<div>
-    <h2>All Todo's</h2>
-    <ul>
-        {{#each things}}
-            <li>
-                <p>
-                    {{this.id}}. {{this.thing}}
-                    <button data-thingid="{{this.id}}" class="delete-button">Delete</button>
-                </p>
-            </li>
-        {{/each}}
-    </ul>
-</div>
+    <header>
+        <h2>DM Todo Portal</h2>
+    </header>
 
-<div>
-    <h2>Create New Todo</h2>
-    <form id="create-thing">
-        <textarea type="text" name="create" cols="30" rows="1"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+    <img class="bg" src="./assets/img/listImg.jpeg" alt="bg">
 
-<div>
-    <h2>Edit a Todo</h2>
-    <form id="edit-thing">
-        <select name="id">
-            {{#each things}}
-                    <option value="{{this.id}}">{{this.id}}</option>
-            {{/each}}
-        </select>
-        <textarea name="edit-thing-field" cols="30" rows="1"></textarea>
-        <button type="submit">Submit</button>
-    </form>
+    <main>
+        <div>
+            <h2>All Todo's</h2>
+            <ul>
+                {{#each things}}
+                <li>
+                    <p>
+                        {{this.id}}. {{this.thing}}
+                        <button data-thingid="{{this.id}}" class="delete-button">Delete</button>
+                    </p>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <h2>Create New Todo</h2>
+            <form id="create-thing">
+                <textarea type="text" name="create" cols="30" rows="1"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+            <h2>Edit a Todo</h2>
+            <form id="edit-thing">
+                <select name="id">
+                    {{#each things}}
+                            <option value="{{this.id}}">{{this.id}}</option>
+                    {{/each}}
+                </select>
+                <textarea name="edit-thing-field" cols="30" rows="1"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </footer>
+
 </div>
