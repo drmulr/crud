@@ -1,38 +1,70 @@
-<div>
-    <h2>DM Todo Portal</h2>
+<nav col s12>
+    <div class="nav-wrapper indigo darken-3">
+    <a href="#" class="brand-logo center">Things To Do!</a>
+        {{!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="sass.html">Good</a></li>
+            <li><a href="badges.html">Better</a></li>
+            <li><a href="collapsible.html">Best</a></li>
+        </ul> --}}
+    </div>
+</nav>
+<div class="container col s12 m8">
+    <div class="row">
+        <table>
+            <h4>All Todo's</h4>
+            <thead>
+                <tr>
+                    <th>Thing</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each things}}
+                    <tr>
+                        <td>
+                            {{this.thing}}
+                        </td>
+                        <td class="right-align">
+                            <button data-thingid="{{this.id}}" class="delete-button waves-effect waves-light red lighten-1 btn">Delete</button>                    
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h4>Create New Todo</h4>
+        <form id="create-thing" class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="textarea1" name="create" class="text-grey darken-3 materialize-textarea"></textarea>
+                    <label for="textarea1">New Todo</label>
+                    <button type="submit" class="waves-effect waves-light blue lighten-1 btn">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <h4>Edit a Todo</h4>
+        <form id="edit-thing" class="col s12">
+            <select name="id">
+                <option value="">Choose one to edit</option>
+                {{#each things}}
+                        <option value="{{this.id}}">{{this.thing}}</option>
+                {{/each}}
+            </select>
+            <textarea class="materialize-textarea" name="edit-thing-field" cols="30" rows="1"></textarea>
+            <button type="submit" class="waves-effect waves-light blue lighten-1 btn">Submit</button>
+        </form>
+    </div>
 </div>
-
-<div>
-    <h2>All Todo's</h2>
-    <ul>
-        {{#each things}}
-            <li>
-                <p>
-                    {{this.id}}. {{this.thing}}
-                    <button data-thingid="{{this.id}}" class="delete-button">Delete</button>
-                </p>
-            </li>
-        {{/each}}
-    </ul>
-</div>
-
-<div>
-    <h2>Create New Todo</h2>
-    <form id="create-thing">
-        <textarea type="text" name="create" cols="30" rows="1"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-</div>
-
-<div>
-    <h2>Edit a Todo</h2>
-    <form id="edit-thing">
-        <select name="id">
-            {{#each things}}
-                    <option value="{{this.id}}">{{this.id}}</option>
-            {{/each}}
-        </select>
-        <textarea name="edit-thing-field" cols="30" rows="1"></textarea>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+<footer class="page-footer indigo darken-3">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Thank you!</h5>
+                <p class="grey-text text-lighten-4">By using this tool, you're one step closer to full organization!</p>
+            </div>
+        </div>
+    </div>
+</footer>

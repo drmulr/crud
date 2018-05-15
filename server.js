@@ -20,13 +20,6 @@ require("dotenv").config({ path: "variables.env" });
 
 //DB Connection
 const connection = require("./config/connection");
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
 
 app.listen(port, function() {
   console.log("listening on port", port);
@@ -78,7 +71,7 @@ app.put("/things/:id", function(req, res) {
   );
 });
 
-app.delete("things/:id", function(req, res) {
+app.delete("/things/:id", function(req, res) {
   connection.query("DELETE FROM things WHERE id = ?", [req.params.id], function(
     err,
     result

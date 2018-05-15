@@ -1,3 +1,10 @@
+//this is for some Materialize components:
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+
+
+
 $("#create-thing").on("submit", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
@@ -17,9 +24,17 @@ $("#create-thing").on("submit", function (event) {
 
 $("#edit-thing").on("submit", function (event) {
     event.preventDefault();
+    
     var id = $("[name=id]").val().trim();
     var updatedThing = {
         thing: $("#edit-thing [name=edit-thing-field]").val().trim()};
+
+    //Let's make sure they choose one...
+    if(!id=="" || !updatedThing==""){
+        alert("Hey, don't forget to choose a thing to update!")
+        location.reload();
+    }
+
     $.ajax("/things/" + id, {
         type: "PUT",
         data: updatedThing
